@@ -44,14 +44,14 @@ const fieldClass =
 
 function RegisterPage() {
   const [form, setForm] = useState({ ...empty });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof typeof empty, string>>>({});
   const [done, setDone] = useState(false);
 
   const set = (k: keyof typeof empty, v: string) => setForm((f) => ({ ...f, [k]: v }));
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const next: Record<string, string> = {};
+    const next: Partial<Record<keyof typeof empty, string>> = {};
     if (!form.fullName.trim()) next.fullName = "Full name is required.";
     if (!/^\S+@\S+\.\S+$/.test(form.email)) next.email = "Enter a valid email address.";
     if (form.phone.replace(/\D/g, "").length < 10) next.phone = "Enter a valid phone number.";

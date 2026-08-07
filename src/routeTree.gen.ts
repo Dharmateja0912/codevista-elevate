@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BatchesRouteImport } from './routes/batches'
 import { Route as CertificationsRouteImport } from './routes/certifications'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as TrainersRouteImport } from './routes/trainers'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesSlugRouteImport } from './routes/courses.$slug'
@@ -37,6 +38,11 @@ const PlacementsRoute = PlacementsRouteImport.update({
   path: '/placements',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrainersRoute = TrainersRouteImport.update({
   id: '/trainers',
   path: '/trainers',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/batches': typeof BatchesRoute
   '/certifications': typeof CertificationsRoute
   '/placements': typeof PlacementsRoute
+  '/register': typeof RegisterRoute
   '/trainers': typeof TrainersRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses/': typeof CoursesIndexRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/batches': typeof BatchesRoute
   '/certifications': typeof CertificationsRoute
   '/placements': typeof PlacementsRoute
+  '/register': typeof RegisterRoute
   '/trainers': typeof TrainersRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses': typeof CoursesIndexRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/batches': typeof BatchesRoute
   '/certifications': typeof CertificationsRoute
   '/placements': typeof PlacementsRoute
+  '/register': typeof RegisterRoute
   '/trainers': typeof TrainersRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses/': typeof CoursesIndexRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/batches'
     | '/certifications'
     | '/placements'
+    | '/register'
     | '/trainers'
     | '/courses/$slug'
     | '/courses/'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/batches'
     | '/certifications'
     | '/placements'
+    | '/register'
     | '/trainers'
     | '/courses/$slug'
     | '/courses'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/batches'
     | '/certifications'
     | '/placements'
+    | '/register'
     | '/trainers'
     | '/courses/$slug'
     | '/courses/'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   BatchesRoute: typeof BatchesRoute
   CertificationsRoute: typeof CertificationsRoute
   PlacementsRoute: typeof PlacementsRoute
+  RegisterRoute: typeof RegisterRoute
   TrainersRoute: typeof TrainersRoute
   CoursesSlugRoute: typeof CoursesSlugRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlacementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/trainers': {
       id: '/trainers'
       path: '/trainers'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   BatchesRoute: BatchesRoute,
   CertificationsRoute: CertificationsRoute,
   PlacementsRoute: PlacementsRoute,
+  RegisterRoute: RegisterRoute,
   TrainersRoute: TrainersRoute,
   CoursesSlugRoute: CoursesSlugRoute,
   CoursesIndexRoute: CoursesIndexRoute,
