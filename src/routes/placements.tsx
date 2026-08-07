@@ -180,7 +180,7 @@ function PlacementsPage() {
                       dataKey="name"
                       tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
                       interval={0}
-                      tickFormatter={(v: string) => v.split(" ")[0]}
+                      tickFormatter={(v: string) => String(v).split(" ")[0] ?? v}
                     />
                     <YAxis tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} domain={[0, 100]} />
                     <Tooltip
