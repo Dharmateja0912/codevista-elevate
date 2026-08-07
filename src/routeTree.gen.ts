@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BatchesRouteImport } from './routes/batches'
 import { Route as CertificationsRouteImport } from './routes/certifications'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as TrainersRouteImport } from './routes/trainers'
@@ -31,6 +33,16 @@ const BatchesRoute = BatchesRouteImport.update({
 const CertificationsRoute = CertificationsRouteImport.update({
   id: '/certifications',
   path: '/certifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlacementsRoute = PlacementsRouteImport.update({
@@ -63,6 +75,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/batches': typeof BatchesRoute
   '/certifications': typeof CertificationsRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/placements': typeof PlacementsRoute
   '/register': typeof RegisterRoute
   '/trainers': typeof TrainersRoute
@@ -73,6 +87,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/batches': typeof BatchesRoute
   '/certifications': typeof CertificationsRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/placements': typeof PlacementsRoute
   '/register': typeof RegisterRoute
   '/trainers': typeof TrainersRoute
@@ -84,6 +100,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/batches': typeof BatchesRoute
   '/certifications': typeof CertificationsRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/placements': typeof PlacementsRoute
   '/register': typeof RegisterRoute
   '/trainers': typeof TrainersRoute
@@ -96,6 +114,8 @@ export interface FileRouteTypes {
     | '/'
     | '/batches'
     | '/certifications'
+    | '/contact'
+    | '/dashboard'
     | '/placements'
     | '/register'
     | '/trainers'
@@ -106,6 +126,8 @@ export interface FileRouteTypes {
     | '/'
     | '/batches'
     | '/certifications'
+    | '/contact'
+    | '/dashboard'
     | '/placements'
     | '/register'
     | '/trainers'
@@ -116,6 +138,8 @@ export interface FileRouteTypes {
     | '/'
     | '/batches'
     | '/certifications'
+    | '/contact'
+    | '/dashboard'
     | '/placements'
     | '/register'
     | '/trainers'
@@ -127,6 +151,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BatchesRoute: typeof BatchesRoute
   CertificationsRoute: typeof CertificationsRoute
+  ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRoute
   PlacementsRoute: typeof PlacementsRoute
   RegisterRoute: typeof RegisterRoute
   TrainersRoute: typeof TrainersRoute
@@ -155,6 +181,20 @@ declare module '@tanstack/react-router' {
       path: '/certifications'
       fullPath: '/certifications'
       preLoaderRoute: typeof CertificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/placements': {
@@ -199,6 +239,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BatchesRoute: BatchesRoute,
   CertificationsRoute: CertificationsRoute,
+  ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRoute,
   PlacementsRoute: PlacementsRoute,
   RegisterRoute: RegisterRoute,
   TrainersRoute: TrainersRoute,
