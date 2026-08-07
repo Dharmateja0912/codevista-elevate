@@ -6,36 +6,32 @@ export function Reveal({
   children,
   delay = 0,
   className,
-  y = 24,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   y?: number;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      ref={ref}
+      className={cn("transition-all duration-700 ease-out", className)}
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "none" : "translateY(24px)",
+        transitionDelay: `${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
 export function PageTransition({ children }: { children: ReactNode }) {
-  return (
-    <motion.main
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.main>
-  );
+  return <main className="animate-fade-in">{children}</main>;
 }
 
 export function Counter({
